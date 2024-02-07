@@ -1,0 +1,45 @@
+{
+    "courses": [
+        {
+            "name": "Practical Physics 1",
+            "code": "PHY109",
+            "description": "In this course, students engage in a minimum of 22 major experiments covering various aspects of the physics curriculum for the year.",
+            "status": "Core",
+            "credits": 3
+        },
+        {
+            "name": "Classical Mechanics",
+            "code": "PHY111",
+            "description": "In this course, students engage in a minimum of 22 major experiments covering various aspects of the physics curriculum for the year.",
+            "status": "Core",
+            "credits": 3
+        }
+    ],
+    "department": [
+        {
+            "name": "Physics",
+            "hod": "Professor Osahon"
+        },
+        {
+            "name": "Computer Science",
+            "hod": "Professor Egwali A. O."
+        },
+        {
+            "name": "Geology",
+            "hod": "Dr. Salami S. A."
+        },
+        {
+            "name": "Mathematics", 
+            "hod": "Professor Okuonghae R. I."
+        },
+        {
+            "name": "Chemistry",
+            "hod": "Professor J. U. Iyasele."
+        },
+        {
+            "name": "Statistics",
+            "hod": "Professor Ekhosuehi N."
+        }
+
+    ]
+}
