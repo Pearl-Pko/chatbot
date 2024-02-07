@@ -29,4 +29,4 @@ const getCurrentHod = (message) => {
     );
 };
 
-module.exports = {getCurrentHod};
+module.exports = {getCurrentHod, listAllDepartments};

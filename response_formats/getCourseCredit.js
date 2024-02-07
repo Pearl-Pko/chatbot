@@ -4,7 +4,7 @@ const {Dialog} = require("../dialog");
 const creditLoadRegex = /\w{3}\s?\d{3}/i;
 
 const getCourseCredit = (message, matches) => {
-    let result = message.match(creditLoadRegex)?.[0];
+    const result = message.match(creditLoadRegex)?.[0];
 
     const course = data["courses"].find(
         (course) => course.code.toLowerCase() === result.replaceAll(" ", "")

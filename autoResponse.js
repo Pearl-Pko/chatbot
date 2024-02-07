@@ -1,6 +1,7 @@
 const { getCourseCredit } = require("./response_formats/getCourseCredit");
 const {dialog} = require("./dialog");
 const {getCurrentHod} = require("./response_formats/getCurrentHod")
+const {getSemesterCourses} = require("./response_formats/getSemesterCourses")
 
 const matchToken = (str, searchToken) => {
     //this supports matching both strings and regular expressions
@@ -66,8 +67,9 @@ const checkAllMessages = (message) => {
     // response(() => 'Hello!', ["hello", "hi", "sup", "hey", "heyo"], single_response=true);
     // response(() => "I'm doing fine, and you?", ["how", "are", "you", "doing"], required_words=["how"])
     // response(() => getCourseCredit(message), ["what", "is", "the", "course", "credit", "for", /\w{3}\s?\d{3}/i], required_words=["credit", /\w{3}\s?\d{3}/i])
-    response(getCourseCredit(message));
+    // response(getCourseCredit(message));
     // response(getCurrentHod(message));
+    response(getSemesterCourses(message));
 
     const best_match = getMostLikelyDialog(highest_prob_list);
     console.log(highest_prob_list)

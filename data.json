@@ -19,10 +19,17 @@
         {
             "name": "Physics",
             "hod": "Professor Osahon"
+            
         },
         {
             "name": "Computer Science",
-            "hod": "Professor Egwali A. O."
+            "hod": "Professor Egwali A. O.",
+            "courses": {
+                "100 level": {
+                    "first semester": ["CSC110", "MTH110", "MTH112", "PHY111", "CHM111", "GST111", "GST112", "CSC111", "BUS111", "PHY109", "PHY113"],
+                    "second semester": ["CSC120", "MTH123", "MTH125", "PHY124", "GST121", "GST122", "GST123", "CHM122", "BUS121"]
+                }
+            }
         },
         {
             "name": "Geology",
