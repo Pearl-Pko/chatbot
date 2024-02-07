@@ -3,23 +3,23 @@ const {Dialog} = require("../dialog");
 
 const creditLoadRegex = /\w{3}\s?\d{3}/i;
 
-const getCourseCredit = (message, matches) =>
-    new Dialog(
-        () => {
-            let i;
-            for (i = 0; i < message.length; i++) {
-                if (creditLoadRegex.test(message[i])) break;
-            }
+const getCourseCredit = (message, matches) => {
+    let result = message.match(creditLoadRegex)?.[0];
 
-            const course = data["courses"].find(
-                (course) =>
-                    course.code.toLowerCase() === message[i].replaceAll(" ", "")
-            );
-            console.log(course);
-            return `The credit load for ${message[i]} is ${course.credits} credits`;
+    const course = data["courses"].find(
+        (course) => course.code.toLowerCase() === result.replaceAll(" ", "")
+    );
+
+    return new Dialog(
+        () => {
+            if (result && course)
+                return `The credit load for ${result} is ${course.credits} credits`;
+            else if (result)
+                return `There is no such course as ${result}`
         },
         [creditLoadRegex, "credit"],
         ["What", "is", "credit", "load", "for", creditLoadRegex]
     );
+};
 
 module.exports = {getCourseCredit};

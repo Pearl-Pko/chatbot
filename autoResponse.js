@@ -2,24 +2,26 @@ const { getCourseCredit } = require("./response_formats/getCourseCredit");
 const {dialog} = require("./dialog");
 const {getCurrentHod} = require("./response_formats/getCurrentHod")
 
-const matchToken = (array, searchToken) => {
+const matchToken = (str, searchToken) => {
     //this supports matching both strings and regular expressions
-    for (const token of array) {
-        if (typeof token === "string" && token === searchToken) 
-            return true;
-        else if (token instanceof RegExp && token.test(searchToken))            
-            return true;
-    }
-    return false;
+    if (typeof searchToken === "string")
+        return str.includes(searchToken);
+    else if (searchToken instanceof RegExp)
+        return searchToken.test(str);
 }
 
-const messageProbability = (userMessage, recognisedWords, singleResponse=false, requiredWords=[]) => {
+const messageProbability = (userMessage, recognisedWords, requiredWords=[]) => {
     let messageCertainty = 0
-    const hasRequiredWords = true;
+    let hasRequiredWords = true;
 
 
-    for (const word of userMessage) {
-        if (matchToken(recognisedWords, word)) {
+    // for (const word of userMessage) {
+    //     if (matchToken(recognisedWords, word)) {
+    //         messageCertainty += 1;
+    //     }
+    // }
+    for (const word of recognisedWords) {
+        if (matchToken(userMessage, word)) {
             messageCertainty += 1;
         }
     }
@@ -28,13 +30,13 @@ const messageProbability = (userMessage, recognisedWords, singleResponse=false, 
 
     for (const word of requiredWords)
     {
-        if (matchToken(userMessage, word)) {
+        if (!matchToken(userMessage, word)) {
             hasRequiredWords = false;
             break;
         }
     }
 
-    return (hasRequiredWords || singleResponse) ? percentage : 0;
+    return (hasRequiredWords) ? percentage : 0;
 };
 
 const getMostLikelyDialog = (prob_list) => {
@@ -58,16 +60,17 @@ const checkAllMessages = (message) => {
     //     highest_prob_list[bot_response] = messageProbability(message, list_of_words, single_response, required_words);
     // };
     const response = (dialog) => {
-        highest_prob_list.set(dialog, messageProbability(message, dialog.recognisedWords, dialog.required_words));
+        highest_prob_list.set(dialog, messageProbability(message, dialog.recognisedWords, dialog.requiredWords));
     };
 
     // response(() => 'Hello!', ["hello", "hi", "sup", "hey", "heyo"], single_response=true);
     // response(() => "I'm doing fine, and you?", ["how", "are", "you", "doing"], required_words=["how"])
     // response(() => getCourseCredit(message), ["what", "is", "the", "course", "credit", "for", /\w{3}\s?\d{3}/i], required_words=["credit", /\w{3}\s?\d{3}/i])
-    // response(getCourseCredit(message));
-    response(getCurrentHod(message));
+    response(getCourseCredit(message));
+    // response(getCurrentHod(message));
 
     const best_match = getMostLikelyDialog(highest_prob_list);
+    console.log(highest_prob_list)
     // const best_match = Object.keys(highest_prob_list).reduce((acc, curr) => (highest_prob_list[curr] > highest_prob_list[acc]) ? curr : acc);
 
     return best_match.response();
@@ -76,7 +79,7 @@ const checkAllMessages = (message) => {
 const autoResponse = (history, message) => {
     message = message.toLowerCase();
     split_message = message.split(/\s+|[,;?!.-]\s*/i);
-    const response = checkAllMessages(split_message);
+    const response = checkAllMessages(message);
 
     return response;
 
