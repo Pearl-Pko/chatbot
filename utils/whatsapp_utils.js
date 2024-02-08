@@ -18,21 +18,6 @@ function processTextForWhatsApp(text) {
     return processedText;
 }
 
-// function getTextMessageInput(recipient, text) {
-//     return JSON.stringify({
-//         messaging_product: "whatsapp",
-//         recipient_type: "individual",
-//         to: recipient,
-//         type: "text",
-//         text: { preview_url: false, body: text }
-//     });
-// }
-
-function generateResponse(response) {
-    // Return text in uppercase
-    return response.toUpperCase();
-}
-
 function getUserText(body) {
     return body.entry[0].changes[0].value.messages[0].text.body;
 }
@@ -78,28 +63,6 @@ function generateResponse(messageBody) {
     // Placeholder function for generating a response
     return `Received message: ${messageBody}`;
 }
-
-// function getTextMessageInput(recipientWaId, message) {
-//     // Placeholder function for constructing message data
-//     return {
-//         recipientWaId,
-//         message
-//     };
-// }
-
-// function sendMessage(data) {
-//     // Placeholder function for sending a message
-//     // Use Axios or any other HTTP client library to send the message data
-//     console.log("Sending message:", data);
-//     // Example using Axios
-//     // axios.post('your_send_message_endpoint', data)
-//     //     .then(response => {
-//     //         console.log("Message sent successfully:", response.data);
-//     //     })
-//     //     .catch(error => {
-//     //         console.error("Error sending message:", error);
-//     //     });
-// }
 
 // Export functions if needed
 module.exports = {

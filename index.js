@@ -1,14 +1,8 @@
-const {autoResponse} = require('./autoResponse');
-const {userResponse} = require('./userResponse');
-const {sendMessage, getTextMessageInput} = require("./utils/messageHelper");
-const {signatureRequired} = require('./middleware/security')
 const express = require('express');
 const bodyParser = require('body-parser');
 const morgan = require("morgan");
 const {isValidWhatsAppMessage, processWhatsAppMessage, processTextForWhatsApp} = require("./utils/whatsapp_utils")
 require('dotenv').config()
-
-const write = (str) => process.stdout.write(str);
 
 const app = express();
 
@@ -19,40 +13,6 @@ app.get('/', (req, res) => {
     res.sendStatus(200);
 })
 
-console.log(process.env.RECIPIENT_WAID);
-const data = getTextMessageInput(process.env.RECIPIENT_WAID, 'Welcome to the Movie Ticket Demo App for Node.js!');
-// sendMessage(data).then( response => {
-//     console.log(response.status);
-// }
-// )
-console.log(process.env.ACCESS_TOKEN)
-
-// const chat = () => {
-//     chatHistory = []
-
-//     while (true)
-//     {
-//         const userResponseText = userResponse(chatHistory);
-//         // write("User: ");
-//         // write(userResponseText);
-//         // write('\n');
-
-//         write("AI: ")
-//         const autoResponseText = autoResponse(chatHistory, userResponseText);
-//         write(autoResponseText);
-//         write('\n');
-        
-//         chatHistory.push(4);
-
-//         // history.push()
-
-//         // console.log(`You are ${age} years old.`);
-
-//     }
-
-// }
-
-// chat();
 app.get('/webhook', (req, res) => {
     // Parse params from the webhook verification request
     const mode = req.query['hub.mode'];
@@ -81,7 +41,7 @@ app.get('/webhook', (req, res) => {
 app.post('/webhook', (req, res) => {
     const body = req.body;
     // console.log(`request body: ${JSON.stringify(body)}`);
-    console.log((body));
+    // console.log((body));
     // Check if it's a WhatsApp status update
     if (body.entry && body.entry[0] && body.entry[0].changes && body.entry[0].changes[0] && body.entry[0].changes[0].value && body.entry[0].changes[0].value.statuses) {
         console.log("Received a WhatsApp status update.");
