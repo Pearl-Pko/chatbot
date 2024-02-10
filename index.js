@@ -45,8 +45,7 @@ app.post('/webhook', (req, res) => {
     // Check if it's a WhatsApp status update
     if (body.entry && body.entry[0] && body.entry[0].changes && body.entry[0].changes[0] && body.entry[0].changes[0].value && body.entry[0].changes[0].value.statuses) {
         console.log("Received a WhatsApp status update.");
-        res.status(200).json({ status: 'ok' });
-        return;
+        return res.status(200).json({ status: 'ok' });
     }
 
     try {
