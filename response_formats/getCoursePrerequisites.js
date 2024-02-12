@@ -3,7 +3,7 @@ const {Dialog} = require("../dialog");
 
 const creditLoadRegex = /\w{3}\s?\d{3}/i;
 
-const getCourseStatus = (message) => {
+const getCoursePrerequisite = (message) => {
     return new Dialog(
         () => {
             const result = message.match(creditLoadRegex)?.[0];
@@ -13,16 +13,14 @@ const getCourseStatus = (message) => {
                     course.code.toLowerCase() === result.replaceAll(" ", "")
             );
             if (result && course)
-                return `${course.code} is ${
-                    ["a", "e", "i", "o", "u"].includes(course.status[0].toLowerCase())
-                        ? "an"
-                        : "a"
-                } ${course.status.toLowerCase()} course`;
+                return `The prerequisites for ${course.code} ${
+                    course.prerequisites.length === 0 ? "is" : "are"
+                } ${course.prerequisites.join(", ")}`;
             else if (result) return `There is no such course as ${result}`;
         },
-        [creditLoadRegex, "status"],
-        ["status", "of", "what", creditLoadRegex]
+        [creditLoadRegex, "prerequisite"],
+        ["prerequisite", "what", creditLoadRegex]
     );
 };
 
-module.exports = {getCourseStatus};
+module.exports = {getCoursePrerequisite};
