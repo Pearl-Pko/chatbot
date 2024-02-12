@@ -7,6 +7,7 @@ const {getInvalidResponse} = require("./response_formats/getInvalidResponse");
 const {getCourseName} = require("./response_formats/getCourseName");
 const {getCourseStatus} = require("./response_formats/getCourseStatus");
 const {getIntroduction} = require("./response_formats/getIntroduction");
+const {getCoursePrerequisite} = require("./response_formats/getCoursePrerequisites")
 
 const buildDialogTree = (response, message) => {
     //this registers the different responses the chatbot can perform
@@ -14,6 +15,7 @@ const buildDialogTree = (response, message) => {
     response(getIntroduction(message));
     response(getCourseName(message));
     response(getCourseCredit(message));
+    response(getCoursePrerequisite(message));
     response(getCurrentHod(message));
     response(getSemesterCourses(message));
     response(getCourseStatus(message))

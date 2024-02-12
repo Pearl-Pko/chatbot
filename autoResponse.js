@@ -1,8 +1,4 @@
-const { getCourseCredit } = require("./response_formats/getCourseCredit");
-const {dialog} = require("./dialog");
-const {getCurrentHod} = require("./response_formats/getCurrentHod")
-const {getSemesterCourses} = require("./response_formats/getSemesterCourses")
-const {getInvalidResponse} = require("./response_formats/getInvalidResponse");
+const { getCourseCrKponse} = require("./response_formats/getInvalidResponse");
 const {buildDialogTree} = require("./buildDialogTree")
 
 
@@ -18,12 +14,6 @@ const messageProbability = (userMessage, recognisedWords, requiredWords=[]) => {
     let messageCertainty = 0
     let hasRequiredWords = true;
 
-
-    // for (const word of userMessage) {
-    //     if (matchToken(recognisedWords, word)) {
-    //         messageCertainty += 1;
-    //     }
-    // }
     for (const word of recognisedWords) {
         if (matchToken(userMessage, word)) {
             messageCertainty += 1;
@@ -69,11 +59,6 @@ const checkAllMessages = (message) => {
 
     // response(() => 'Hello!', ["hello", "hi", "sup", "hey", "heyo"], single_response=true);
     // response(() => "I'm doing fine, and you?", ["how", "are", "you", "doing"], required_words=["how"])
-    // response(() => getCourseCredit(message), ["what", "is", "the", "course", "credit", "for", /\w{3}\s?\d{3}/i], required_words=["credit", /\w{3}\s?\d{3}/i])
-    // response(getInvalidResponse(message))
-    // response(getCourseCredit(message));
-    // response(getCurrentHod(message));
-    // response(getSemesterCourses(message));
     buildDialogTree(response, message);
 
     const best_match = getMostLikelyDialog(highest_prob_list);
@@ -89,10 +74,6 @@ const autoResponse = (history, message) => {
     const response = checkAllMessages(message);
 
     return response;
-
-
-
-    // return "I am a chatbot";
 }
 
 module.exports = {autoResponse}
