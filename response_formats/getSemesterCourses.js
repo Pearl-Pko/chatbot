@@ -2,7 +2,8 @@ const data = require("../data.json");
 const {Dialog} = require("../dialog");
 const {listAllDepartments} = require("./getCurrentHod");
 
-const getLevelRegex = /(\d{3})\s?level/i;
+// const getLevelRegex = /(\d{3})\s?level/i;
+const getLevelRegex = /([1-4]00)\s?level/i;
 const getSemesterRegex = /(first|second)\ssemester/i;
 const departments = listAllDepartments();
 const departmentsRegex = new RegExp(departments);

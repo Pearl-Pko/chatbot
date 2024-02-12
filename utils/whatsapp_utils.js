@@ -38,6 +38,8 @@ function processWhatsAppMessage(body) {
     // const responseForWhatsApp = processTextForWhatsApp(response);
 
     // const data = getTextMessageInput(process.env.RECIPIENT_WAID, response);
+    if (!messageBody)  
+        return res.status(400).json({ status: 'error', message: 'Invalid data' });
     const response = autoResponse([], messageBody)
     console.log(response);
     const data = getTextMessageInput(process.env.RECIPIENT_WAID, response);
