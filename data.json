@@ -45,7 +45,56 @@
             "status": "Core",
             "credits": 3,
             "prerequisites": ["CSC110", "100 level Maths"]
+        },
+        {
+            "name": "Symbolic Programming in FORTRAN",
+            "code": "CSC212",
+            "description": "CSC211 is Structured Programming in PASCAL. It delves into the foundations of structured programming, covering declarations, data types, and programming operations. Students explore the intricacies of PASCAL, including strings, pointers, list processing, and file handling.",
+            "status": "Core",
+            "credits": 3,
+            "prerequisites": ["CSC110", "100 level Maths"]
+        },
+        {
+            "name": "Information Technology: Design, Policy and Application",
+            "code": "CSC217",
+            "description": "CSC211 is Structured Programming in PASCAL. It delves into the foundations of structured programming, covering declarations, data types, and programming operations. Students explore the intricacies of PASCAL, including strings, pointers, list processing, and file handling.",
+            "status": "Mandatory",
+            "credits": 3,
+            "prerequisites": ["CSC110", "CSC111", "CSC120"]
+        },
+        {
+            "name": "Information Interface and Presentation",
+            "code": "CSC237",
+            "description": "CSC211 is Structured Programming in PASCAL. It delves into the foundations of structured programming, covering declarations, data types, and programming operations. Students explore the intricacies of PASCAL, including strings, pointers, list processing, and file handling.",
+            "status": "Elective",
+            "credits": 3,
+            "prerequisites": ["CSC110", "CSC120"]
+        },
+        {
+            "name": "Assembly Language Programming I",
+            "code": "CSC222",
+            "description": "CSC211 is Structured Programming in PASCAL. It delves into the foundations of structured programming, covering declarations, data types, and programming operations. Students explore the intricacies of PASCAL, including strings, pointers, list processing, and file handling.",
+            "status": "Core",
+            "credits": 3,
+            "prerequisites": ["CSC110", "CSC211", "CSC212"]
+        },
+        {
+            "name": "Introduction to Data Processing",
+            "code": "CSC220",
+            "description": "CSC211 is Structured Programming in PASCAL. It delves into the foundations of structured programming, covering declarations, data types, and programming operations. Students explore the intricacies of PASCAL, including strings, pointers, list processing, and file handling.",
+            "status": "Core",
+            "credits": 3,
+            "prerequisites": ["CSC110"]
+        },
+        {
+            "name": "Data Structures",
+            "code": "CSC313",
+            "description": "CSC211 is Structured Programming in PASCAL. It delves into the foundations of structured programming, covering declarations, data types, and programming operations. Students explore the intricacies of PASCAL, including strings, pointers, list processing, and file handling.",
+            "status": "Core",
+            "credits": 3,
+            "prerequisites": ["CSC220", "CSC211", "CSC212"]
         }
+        
     ],
     "department": [
         {
