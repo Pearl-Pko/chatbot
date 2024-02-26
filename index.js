@@ -2,18 +2,28 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const morgan = require("morgan");
 const {isValidWhatsAppMessage, processWhatsAppMessage, processTextForWhatsApp} = require("./utils/whatsapp_utils")
+const cors = require("cors")
+const {autoResponse} = require("./autoResponse");
 require('dotenv').config()
 
 const app = express();
 
 app.use(bodyParser.json());
 app.use(morgan('dev'));
+app.use(cors());
 
 app.get('/', (req, res) => {
     res.sendStatus(200);
 })
 
-app.get('/webhook', (req, res) => {
+app.post("/get-response", (req, res) => {
+    const {message} = req.body;
+    const response = autoResponse([], message);
+    console.log(response)
+    res.send({response: response});
+})
+// 
+app.get('/whatsapp-webhook', (req, res) => {
     // Parse params from the webhook verification request
     const mode = req.query['hub.mode'];
     const token = req.query['hub.verify_token'];
@@ -38,7 +48,7 @@ app.get('/webhook', (req, res) => {
     }
 });
 
-app.post('/webhook', (req, res) => {
+app.post('/whatsapp-webhook', (req, res) => {
     const body = req.body;
     // console.log(`request body: ${JSON.stringify(body)}`);
     // console.log((body));
