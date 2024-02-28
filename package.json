@@ -10,6 +10,6 @@
     "prompt-sync": "^4.2.0"
   },
   "scripts": {
-    "start": "nodemon index.js"
+    "start": "node index.js"
   }
 }
