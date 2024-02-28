@@ -12,9 +12,11 @@ const getCoursePrerequisite = (message) => {
                 (course) =>
                     course.code.toLowerCase() === result.replaceAll(" ", "")
             );
-            if (result && course)
+            if (result && course?.prerequisites.length === 0)
+                return `${course.code} has no prerequisities`
+            else if (result && course)
                 return `The prerequisites for ${course.code} ${
-                    course.prerequisites.length === 0 ? "is" : "are"
+                    course.prerequisites.length === 1 ? "is" : "are"
                 } ${course.prerequisites.join(", ")}`;
             else if (result) return `There is no such course as ${result}`;
         },

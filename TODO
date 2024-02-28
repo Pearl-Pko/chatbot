@@ -1,3 +1,4 @@
 Make a fail logic for every dialogue
 Add more complex queries like asking for clarifications
 Add support for multiple queries in one question like give the prerequisites of multiple courses
+Support user replies in whatsapp
